@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fdr-youtube-dl", "fdr-youtube-dl\fdr-youtube-dl.csproj", "{BA887CFC-CEBE-41C9-AEF0-1A7B81DB9732}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA887CFC-CEBE-41C9-AEF0-1A7B81DB9732}.Debug|x86.ActiveCfg = Debug|x86
+		{BA887CFC-CEBE-41C9-AEF0-1A7B81DB9732}.Debug|x86.Build.0 = Debug|x86
+		{BA887CFC-CEBE-41C9-AEF0-1A7B81DB9732}.Release|x86.ActiveCfg = Release|x86
+		{BA887CFC-CEBE-41C9-AEF0-1A7B81DB9732}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
