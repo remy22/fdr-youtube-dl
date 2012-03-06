@@ -74,8 +74,15 @@ namespace fdr_youtube_dl
 
             foreach (var video in feed.Entries)
             {
-                Console.WriteLine(String.Format("Storing Video: [{0}] in Location: [{1}]", video.Title, _destination));
-                request.Download(video, VideoQuality.Original, VideoFormat.MP4, _destination);
+                if (video.Private)
+                {
+                    Console.WriteLine(String.Format("Cannot Retrieve [{0}] Due To Privacy Setting.", video.Title));
+                }
+                else
+                {
+                    Console.WriteLine(String.Format("Storing Video: [{0}] in Location: [{1}]", video.Title, _destination));
+                    request.Download(video, VideoQuality.Original, VideoFormat.MP4, _destination);                    
+                }
             }
         }
     }
