@@ -65,24 +65,35 @@ namespace fdr_youtube_dl
             }
 
             //main app
+            Console.WriteLine("Creating settings sbject...");
             var settings = new YouTubeRequestSettings(ApplicationName, DeveloperKey, _userid, _password);
+            Console.WriteLine("Creating request object with settings...");
             var request = new YouTubeRequest(settings);
 
             var uri = new Uri("http://gdata.youtube.com/feeds/api/users/default/uploads");
-            var feed = request.Get<Video>(uri);
-            feed.AutoPaging = true;
-
-            foreach (var video in feed.Entries)
+            Console.WriteLine("Getting feed data with request oject...");
+            try
             {
-                if (video.Private)
+                var feed = request.Get<Video>(uri);
+                feed.AutoPaging = true;
+
+                foreach (var video in feed.Entries)
                 {
-                    Console.WriteLine(String.Format("Cannot Retrieve [{0}] Due To Privacy Setting.", video.Title));
+                    if (video.Private)
+                    {
+                        Console.WriteLine(String.Format("Cannot Retrieve [{0}] Due To Privacy Setting.", video.Title));
+                    }
+                    else
+                    {
+                        Console.WriteLine(String.Format("Storing Video: [{0}] in Location: [{1}]", video.Title, _destination));
+                        request.Download(video, VideoQuality.Original, VideoFormat.MP4, _destination);
+                    }
                 }
-                else
-                {
-                    Console.WriteLine(String.Format("Storing Video: [{0}] in Location: [{1}]", video.Title, _destination));
-                    request.Download(video, VideoQuality.Original, VideoFormat.MP4, _destination);                    
-                }
+            }
+            catch (Google.GData.Client.InvalidCredentialsException)
+            {
+                Console.WriteLine("ERROR: Invalid userid or password. Cannot retrieve data.");
+                Environment.Exit(Environment.ExitCode);
             }
         }
     }
